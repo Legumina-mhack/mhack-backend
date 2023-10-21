@@ -49,6 +49,10 @@ export class EnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   S3_IMG_BASE_URL: string;
+
+  @IsString()
+  @IsNotEmpty()
+  REPORT_RECEIVER_EMAIL: string;
 }
 
 export function validate(config: Record<string, unknown>) {

@@ -13,4 +13,8 @@ export class ServerConfig {
   getDatabaseUrl(): string {
     return this.config.get<string>("DATABASE_URL");
   }
+
+  getReportReceiverEmail(): string {
+    return this.config.get<string>("REPORT_RECEIVER_EMAIL");
+  }
 }

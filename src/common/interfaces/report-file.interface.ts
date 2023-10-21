@@ -1,8 +1,8 @@
 export interface ReportFileData {
     name: string;
     sellerName: string;
-    transactionDate: string;
-    shortDescription: string;
+    transactionDate: string | Date;
+    title: string;
     description: string;
     consumerAddress: string;
     productName: string;

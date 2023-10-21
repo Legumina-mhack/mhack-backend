@@ -7,15 +7,18 @@ import { ReportRepository } from './report.repository';
 import { SummarizerModule } from 'src/summarizer/summarizer.module';
 import { MailerModule } from 'src/mailer/mailer.module';
 import { GenerateModule } from 'src/generate-files/generate.module';
+import { ConfigModule } from '@nestjs/config';
+import { ServerConfig } from 'src/config/server.config';
 
 @Module({
   imports: [    
     MongooseModule.forFeature([{ name: Report.name, schema: ReportSchema }]),
     SummarizerModule,
     MailerModule,
-    GenerateModule
+    GenerateModule,
+    ConfigModule
   ],
-  providers: [ReportService, ReportRepository],
+  providers: [ReportService, ReportRepository, ServerConfig],
   controllers: [ReportController]
 })
 export class ReportModule {}

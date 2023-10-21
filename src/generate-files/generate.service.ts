@@ -38,8 +38,8 @@ export class GenerateService {
                     new Paragraph(args.name),
                     new Paragraph(args.consumerAddress),
                     new Paragraph("Reklamacja towaru (żądanie obniżenia ceny lub odstąpienia od umowy w przypadku istotnego braku zgodności towaru z umową bez wcześniejszego skorzystania z naprawy/wymiany)"),
-                    new Paragraph(`Zawiadamiam, że zakupiony przeze mnie w dniu ${args.transactionDate}. ${args.productName} jest niezgodny z umową. Niezgodność z umową polega na "${args.shortDescription}". W mojej ocenie brak zgodności z umową jest istotny, gdyż ${args.description}.`),
-                    new Paragraph(`W związku z tym na podstawie ustawy z dnia 30 maja 2014 r. o prawach konsumenta (art. 43e):`),
+                    new Paragraph(`Zawiadamiam, że zakupiony przeze mnie w dniu ${args.transactionDate}. ${args.productName} jest niezgodny z umową. Niezgodność z umową polega na "${args.title}". W mojej ocenie brak zgodności z umową jest istotny, gdyż ${args.description}.`),
+                    new Paragraph(`W związku z tym na podstawie ustawy z dnia 30 maja 2014 r. o prawach konsumenta (art. 43e) żądam:`),
                     new Paragraph(`• ${conclusion}.`),
                 ],}]
         });
@@ -72,7 +72,7 @@ export class GenerateService {
                     new Paragraph(args.name),
                     new Paragraph(args.consumerAddress),
                     new Paragraph("Reklamacja towaru (żądanie obniżenia ceny lub odstąpienia od umowy w przypadku istotnego braku zgodności towaru z umową bez wcześniejszego skorzystania z naprawy/wymiany)"),
-                    new Paragraph(`Zawiadamiam, że zakupiony przeze mnie w dniu ${args.transactionDate}. ${args.productName} jest niezgodny z umową. Niezgodność z umową polega na ${args.shortDescription}. W mojej ocenie brak zgodności z umową jest istotny, gdyż ${args.description}. W związku z tym na podstawie ustawy z dnia 30 maja 2014 r. o prawach konsumenta (art. 43e):`),
+                    new Paragraph(`Zawiadamiam, że zakupiony przeze mnie w dniu ${args.transactionDate}. ${args.productName} jest niezgodny z umową. Niezgodność z umową polega na ${args.title}. W mojej ocenie brak zgodności z umową jest istotny, gdyż ${args.description}. W związku z tym na podstawie ustawy z dnia 30 maja 2014 r. o prawach konsumenta (art. 43e) żądam:`),
                     new Paragraph(`• ${conclusion}.`),
                 ],}]
         });

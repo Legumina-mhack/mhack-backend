@@ -17,12 +17,15 @@ export class Report {
 
     @Prop({type: String, required: true})
     userId: string
+
+    @Prop({type: String, required: true})
+    email: string;
     
     @Prop({type: String, enum: ReportState, default: ReportState.PENDING})
     state: ReportState;
 
-    @Prop({type: String, required: true})
-    mediaUrls: string;
+    @Prop({type: [String], required: true})
+    mediaUrls: string[];
 
 
 
@@ -43,6 +46,15 @@ export class Report {
 
     @Prop({type: String})
     consumerAddress: string;
+
+    @Prop({type: String})
+    returnOrExchange: "return" | "exchange";
+
+    @Prop({type: String})
+    accountNumber?: string;
+
+    @Prop({type: Number})
+    desiredAmountToReturn?: number;
 }
 
 export const ReportSchema = SchemaFactory.createForClass(Report);

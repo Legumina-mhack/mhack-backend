@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsUrl } from "class-validator";
+import { IsEmail, IsIBAN, IsNotEmpty, IsOptional, IsUrl } from "class-validator";
 
 export class ReportCreateDto {
     @IsNotEmpty()
@@ -7,8 +7,8 @@ export class ReportCreateDto {
     @IsNotEmpty()
     description: string;
     
-    @IsUrl()
-    mediaUrls: string;
+    @IsUrl({},{each: true})
+    mediaUrls: string[];
     
     @IsNotEmpty()
     sellerName: string;
@@ -27,4 +27,19 @@ export class ReportCreateDto {
 
     @IsNotEmpty()
     consumerAddress: string
+
+    @IsOptional()
+    returnOrExchange?: "return" | "exchange";
+
+    @IsOptional()
+    @IsIBAN()
+    accountNumber?: string;
+
+    @IsOptional()
+    desiredAmountToReturn?: number;
+
+
+    @IsNotEmpty()
+    @IsEmail()
+    email: string;
 }
