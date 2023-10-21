@@ -24,8 +24,7 @@ export class SummarizerService {
                 'Content-Type': 'application/json'
             }
         }));
-
-        return JSON.parse(resp.data.choices[0].message.content).slice(0, 5);
+        return resp.data
     }
 
     async summarize(reasons: string[]): Promise<string> {
@@ -35,7 +34,8 @@ export class SummarizerService {
             userMessage += reason + '\n'
         }
         messages.push({role: 'user', content: userMessage})
-        return await this.callOpenAI(messages);
+        const resp = await this.callOpenAI(messages);
+        return JSON.parse(resp.choices[0].message.content).slice(0, 5)
     }
 
     async deleteSimilarDuplicates(names: string[]): Promise<string[]> {
@@ -45,8 +45,9 @@ export class SummarizerService {
             userMessage += name + ', '
         }
         messages.push({role: 'user', content: userMessage})
-        console.log(messages)
-        return await this.callOpenAI(messages);
+        const resp = await this.callOpenAI(messages); 
+        const data = resp.choices[0].message.content.split(', ')
+        return data
     }
 
 

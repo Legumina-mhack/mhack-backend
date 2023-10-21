@@ -28,19 +28,7 @@ export class ReportRepository {
     }
 
     async getReportsForProduct(productName: string): Promise<Report[]> {
-        const aggregation: PipelineStage[] = [{
-              $search: {
-                index: "productName",
-                text: {
-                  query: productName,
-                  path: {
-                    wildcard: "*"
-                  }
-                }
-              }
-            }
-        ]
-        const data = await this.reportModel.aggregate<ReportDocument>(aggregation);
+        const data = await this.reportModel.find({productName: {$regex: productName, $options: 'i'}})
         return data;
     }
 

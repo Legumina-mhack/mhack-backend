@@ -105,9 +105,8 @@ export class ReportService {
         const productNames = reports.map(report => report.productName);
         const uniqueProductNames = [...new Set(productNames)];
         const uokikResult = await this.searchForProductOnUokik(productName);
-        console.log(uokikResult)
-        console.log(uniqueProductNames)
-        const deletedUniqueProductNames = await this.summarizer.deleteSimilarDuplicates(uniqueProductNames);
-        console.log(deletedUniqueProductNames)
+        const deletedUniqueProductNames = (await this.summarizer.deleteSimilarDuplicates(uniqueProductNames))
+            .map(productName => {return {name: productName, type: 'own'}})
+        return [...uokikResult, ...deletedUniqueProductNames]
     }
 }

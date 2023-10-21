@@ -7,7 +7,6 @@ export class MediaController {
 
     @Post('report/upload/:num')
     public async uploadReportImg(@Param() {num}: any) {
-        console.log(num)
         return this.service.getUrlForUploadReportImg('jpg', num);
     }
 }
