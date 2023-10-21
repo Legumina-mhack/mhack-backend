@@ -1,4 +1,4 @@
-import { IsEmail, IsIBAN, IsNotEmpty, IsOptional, IsUrl } from "class-validator";
+import { IsEmail, IsIBAN, IsNotEmpty, IsOptional, IsUrl, MinLength } from "class-validator";
 
 export class ReportCreateDto {
     @IsNotEmpty()
@@ -8,6 +8,7 @@ export class ReportCreateDto {
     description: string;
     
     @IsUrl({},{each: true})
+    @MinLength(1)
     mediaUrls: string[];
     
     @IsNotEmpty()
