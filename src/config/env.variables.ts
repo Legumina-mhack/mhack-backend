@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsInt, validateSync } from 'class-validator';
+import { IsString, IsNotEmpty, IsInt, validateSync, IsNumber } from 'class-validator';
 import { Transform, plainToClass } from "class-transformer";
 
 export class EnvironmentVariables {
@@ -9,6 +9,18 @@ export class EnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   DATABASE_URL: string;
+
+  @IsString()
+  @IsNotEmpty()
+  OPENAI_API_KEY: string;
+
+  @IsString()
+  OPENAI_API_URL="https://api.openai.com/v1/chat/completions";
+
+  @IsString()
+  OPENAI_MODEL="gpt-3.5-turbo";
+
+  OPENAI_TEMPERATURE=0.5;
 }
 
 export function validate(config: Record<string, unknown>) {

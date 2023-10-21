@@ -1,0 +1,8 @@
+export enum ReportState {
+    PENDING = 'PENDING',
+    IN_PROGRESS = 'IN_PROGRESS',
+    REOPENED = 'REOPENED',
+    ACCEPTED = 'ACCEPTED',
+    REJECTED = 'REJECTED',
+    CANCELED = 'CANCELED',
+}
