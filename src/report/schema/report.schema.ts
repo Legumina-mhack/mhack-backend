@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { ReportState } from 'src/common/enums/report.state.enum';
+import { ReportState } from 'src/report/enums/report.state.enum';
 
 export type ReportDocument = Report & Document;
 
@@ -40,6 +40,9 @@ export class Report {
 
     @Prop({type: Date})
     transactionDate: Date;
+
+    @Prop({type: String})
+    consumerAddress: string;
 }
 
 export const ReportSchema = SchemaFactory.createForClass(Report);

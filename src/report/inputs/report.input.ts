@@ -24,4 +24,7 @@ export class ReportCreateDto {
     
     @IsNotEmpty()
     transactionDate: Date;
+
+    @IsNotEmpty()
+    consumerAddress: string
 }

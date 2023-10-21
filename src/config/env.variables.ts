@@ -21,6 +21,10 @@ export class EnvironmentVariables {
   OPENAI_MODEL="gpt-3.5-turbo";
 
   OPENAI_TEMPERATURE=0.5;
+
+  @IsString()
+  @IsNotEmpty()
+  MAILGUN_API_KEY: string;
 }
 
 export function validate(config: Record<string, unknown>) {
