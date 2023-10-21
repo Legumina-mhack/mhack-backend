@@ -53,6 +53,9 @@ export class EnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   REPORT_RECEIVER_EMAIL: string;
+
+  @IsString()
+  UOKIK_BASE_URL="http://publikacje.uokik.gov.pl/hermes3_pub/";
 }
 
 export function validate(config: Record<string, unknown>) {

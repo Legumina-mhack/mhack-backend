@@ -17,4 +17,8 @@ export class ServerConfig {
   getReportReceiverEmail(): string {
     return this.config.get<string>("REPORT_RECEIVER_EMAIL");
   }
+
+  getUokikBaseUrl(): string {
+    return this.config.get<string>("UOKIK_BASE_URL");
+  }
 }

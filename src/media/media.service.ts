@@ -8,14 +8,15 @@ export class MediaService {
     constructor(readonly s3Service: S3Service) {}
 
     public async getUrlForUploadReportImg(
-        ext: string,
-    ): Promise<{ urlToDownload: string; urlToUpload: string }> {
-        const filename = `${uuidv4()}.${ext}`;
-        const urlToUpload = await this.s3Service.getUrlForUpload(`reports/${filename}`);
-        const urlToDownload = this.s3Service.getUrlForDownload(`reports/${filename}`);
-        return {
-        urlToUpload,
-        urlToDownload,
-        };
+        ext: string, numberOfLinks: number
+    ) {
+        const links = []
+        for(let i = 0; i < numberOfLinks; i++) {
+            const filename = `${uuidv4()}.${ext}`;
+            const urlToUpload = await this.s3Service.getUrlForUpload(`reports/${filename}`);
+            const urlToDownload = this.s3Service.getUrlForDownload(`reports/${filename}`);
+            links.push({urlToDownload, urlToUpload});
+        }
+        return links;
     }
 }

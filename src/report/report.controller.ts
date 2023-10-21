@@ -24,6 +24,12 @@ export class ReportController {
     async findReportsByProduct(@Param() {productName}: any) {
         return this.service.getReportsForProduct(productName);
     }
+
+    @Get('list/products/:productName')
+    @HttpCode(200)
+    async findReportsByProducts(@Param() {productName}: any) {
+        return this.service.checkProductsList(productName);
+    }
     
     @Get('list/:id')
     @HttpCode(200)
