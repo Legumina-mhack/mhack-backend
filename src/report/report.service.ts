@@ -32,6 +32,7 @@ export class ReportService {
             returnOrExchange: report.returnOrExchange,
             accountNumber: report.accountNumber,
             amount: report.desiredAmountToReturn,
+            serialNumber: report.productSN,
         });
         console.log("Generated file name: ", reportName)
         const attachments = {
@@ -40,7 +41,8 @@ export class ReportService {
         }
         console.log(attachments)
         await this.mailer.sendMail(this.config.getReportReceiverEmail(), report.email, attachments);
-        await fs.promises.unlink(path.resolve(reportName)); // Delete the file after sending it
+        await fs.promises.rm(path.resolve(reportName)); // Delete the file after sending it
+        console.log(path.resolve(reportName))
         return reportFromDb;
     }
 

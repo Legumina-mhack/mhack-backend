@@ -11,4 +11,6 @@ export interface ReportFileData {
 
     accountNumber?: string;
     amount?: number;
+
+    serialNumber?: string;
 }

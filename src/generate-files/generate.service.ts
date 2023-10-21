@@ -35,6 +35,7 @@ export class GenerateService {
                 children: [
                     new Paragraph(`Sklep zakupu: ${args.sellerName}`),
                     new Paragraph(`Produkt: ${args.productName}`),
+                    new Paragraph(`Numer seryjny: ${args.serialNumber}`),
                     new Paragraph(args.name),
                     new Paragraph(args.consumerAddress),
                     new Paragraph("Reklamacja towaru (żądanie obniżenia ceny lub odstąpienia od umowy w przypadku istotnego braku zgodności towaru z umową bez wcześniejszego skorzystania z naprawy/wymiany)"),
@@ -69,6 +70,7 @@ export class GenerateService {
                 children: [
                     new Paragraph(`Sklep zakupu: ${args.sellerName}`),
                     new Paragraph(`Produkt: ${args.productName}`),
+                    new Paragraph(`Numer seryjny: ${args.serialNumber}`),
                     new Paragraph(args.name),
                     new Paragraph(args.consumerAddress),
                     new Paragraph("Reklamacja towaru (żądanie obniżenia ceny lub odstąpienia od umowy w przypadku istotnego braku zgodności towaru z umową bez wcześniejszego skorzystania z naprawy/wymiany)"),
