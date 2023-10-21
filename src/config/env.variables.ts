@@ -25,6 +25,30 @@ export class EnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   MAILGUN_API_KEY: string;
+
+  @IsString()
+  @IsNotEmpty()
+  AWS_REGION: string;
+
+  @IsString()
+  @IsNotEmpty()
+  AWS_S3_BUCKET_NAME: string;
+
+  @IsString()
+  @IsNotEmpty()
+  AWS_ACCESS_KEY_ID: string;
+
+  @IsString()
+  @IsNotEmpty()
+  AWS_SECRET_ACCESS_KEY: string;
+
+  @IsString()
+  @IsNotEmpty()
+  S3_BUCKET_PREFIX: string;
+
+  @IsString()
+  @IsNotEmpty()
+  S3_IMG_BASE_URL: string;
 }
 
 export function validate(config: Record<string, unknown>) {
