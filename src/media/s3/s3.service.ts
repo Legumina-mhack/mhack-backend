@@ -25,10 +25,10 @@ export class S3Service {
   }
 
   async getUrlForUpload(fileKey: string): Promise<string> {
-    return this.S3.getSignedUrl('putObject', {
+    return this.S3.getSignedUrl('getObject', {
       Bucket: this.s3Config.getBucketName(),
       Key: `${this.s3Config.getBucketPrefix()}/${fileKey}`,
-      ContentType: 'image/*',
+      //ContentType: 'image/*',
       // ServerSideEncryption: 'AES256',
       Expires: ONE_HOUR,
       // ACL: 'private',
