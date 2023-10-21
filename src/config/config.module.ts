@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
 import { validate } from './env.variables';
 import { ServerConfig } from './server.config';
+import { DatabaseConfig } from './database.config';
 
 @Module({
   imports: [
@@ -9,7 +10,7 @@ import { ServerConfig } from './server.config';
       validate,
     }),
   ],
-  providers: [ServerConfig],
-  exports: [ServerConfig],
+  providers: [ServerConfig, DatabaseConfig],
+  exports: [ServerConfig, DatabaseConfig],
 })
 export class ConfigModule {}

@@ -9,4 +9,8 @@ export class ServerConfig {
   getPort(): number {
     return this.config.get<number>("PORT") || 3000;
   }
+
+  getDatabaseUrl(): string {
+    return this.config.get<string>("DATABASE_URL");
+  }
 }

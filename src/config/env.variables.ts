@@ -1,10 +1,14 @@
+import { IsString, IsNotEmpty, IsInt, validateSync } from 'class-validator';
 import { Transform, plainToClass } from "class-transformer";
-import { IsInt, validateSync } from "class-validator";
 
 export class EnvironmentVariables {
   @IsInt()
   @Transform(({ value }) => +value)
   PORT = 3000;
+
+  @IsString()
+  @IsNotEmpty()
+  DATABASE_URL: string;
 }
 
 export function validate(config: Record<string, unknown>) {

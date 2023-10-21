@@ -1,5 +1,5 @@
 {
-  "name": "clear-nest",
+  "name": "mongo-nest",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -21,11 +21,13 @@
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
+    "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "@prisma/client": "5.3.1",
+    "@nestjs/mongoose": "^10.0.0",
+    "mongoose": "^7.3.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0"
   },
@@ -50,8 +52,7 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.1",
-    "typescript": "^4.7.4",
-    "prisma": "5.3.1"
+    "typescript": "^4.7.4"
   },
   "jest": {
     "moduleFileExtensions": [
