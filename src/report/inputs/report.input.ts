@@ -8,7 +8,6 @@ export class ReportCreateDto {
     description: string;
     
     @IsUrl({},{each: true})
-    @MinLength(1)
     mediaUrls: string[];
     
     @IsNotEmpty()

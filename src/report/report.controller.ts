@@ -1,12 +1,10 @@
 import { BadRequestException, Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
 import { ReportService } from './report.service';
 import { ReportCreateDto } from './inputs/report.input';
-import { MailerService } from 'src/mailer/mailer.service';
-import { GenerateService } from 'src/generate-files/generate.service';
 
 @Controller('report')
 export class ReportController {
-    constructor(private readonly service: ReportService, private readonly mailer: MailerService, private readonly generator: GenerateService) {}
+    constructor(private readonly service: ReportService) {}
 
     //user create report
     @Post('create')

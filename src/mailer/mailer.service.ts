@@ -27,6 +27,7 @@ export class MailerService {
     private async attachmentStreams(attachments: Attachments) {
         const urlStreams = await Promise.all(attachments.urls.map(url => this.downloadFile(url)));
         const fileStreams = await Promise.all(attachments.filenames.map(async (filename)=> {return {filename:'wniosek.docx', data: await this.readFile(filename)}}));
+        console.log(fileStreams);
         return [...urlStreams, ...fileStreams];
     }
 

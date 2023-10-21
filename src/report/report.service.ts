@@ -21,7 +21,7 @@ export class ReportService {
 
     async createReport(report: Partial<ReportDocument>): Promise<any> {
         const reportFromDb = await this.repository.create(report);
-        const reportType = report.desiredAmountToReturn ? ReportFileType.LOWER_PRICE_OR_WITHDRAW : ReportFileType.RETURN_OR_EXCHANGE; 
+        const reportType = report.accountNumber ? ReportFileType.LOWER_PRICE_OR_WITHDRAW : ReportFileType.RETURN_OR_EXCHANGE; 
         const reportName = await this.generator.generateFile(reportType, {
             name: "Temp name",
             sellerName: report.sellerName,
@@ -40,9 +40,9 @@ export class ReportService {
             urls: report.mediaUrls,
             filenames: [reportName]
         }
-        console.log(attachments)
-        await this.mailer.sendMail(this.config.getReportReceiverEmail(), report.email, attachments);
-        await fs.promises.rm(path.resolve(reportName)); // Delete the file after sending it
+        this.mailer.sendMail(this.config.getReportReceiverEmail(), report.email, attachments).then(()=>{
+            fs.promises.unlink(path.resolve(reportName)); // Delete the file after sending it
+        });
         console.log(path.resolve(reportName))
         return reportFromDb;
     }
