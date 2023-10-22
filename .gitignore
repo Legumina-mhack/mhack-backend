@@ -3,3 +3,7 @@ dist
 .env
 *.docx
 napkin.md
+
+# IDEs
+.idea
+.vscode
