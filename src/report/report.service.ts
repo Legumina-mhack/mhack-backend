@@ -57,7 +57,7 @@ export class ReportService {
 
 
     async getReportsForProduct(productName: string): Promise<any> {
-        const reports = await this.repository.getReportsForProduct(productName);
+        const reports = await this.repository.getReportsForProduct(productName.toLowerCase());
         if(reports.length === 0) {
             return []
         }
