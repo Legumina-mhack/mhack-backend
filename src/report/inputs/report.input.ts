@@ -32,7 +32,6 @@ export class ReportCreateDto {
     returnOrExchange?: "return" | "exchange";
 
     @IsOptional()
-    @IsIBAN()
     accountNumber?: string;
 
     @IsOptional()

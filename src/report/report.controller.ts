@@ -10,9 +10,6 @@ export class ReportController {
     @Post('create')
     @HttpCode(201)
     async createReport(@Body() report: ReportCreateDto) {
-        // if (!report.returnOrExchange && !report.accountNumber) {
-        //     throw new BadRequestException('If you want to use return or exchange provide returnOrExchange field. If you want to use lower price or withdraw provide accountNumber field.')
-        // }
         return this.service.createReport(report);
     }
 

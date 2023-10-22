@@ -20,7 +20,7 @@ export class ReportService {
         ) {}
 
     async createReport(report: Partial<ReportDocument>): Promise<any> {
-        const reportFromDb = await this.repository.create(report);
+        //const reportFromDb = await this.repository.create(report);
         const reportType = report.accountNumber ? ReportFileType.LOWER_PRICE_OR_WITHDRAW : ReportFileType.RETURN_OR_EXCHANGE;
         const reportName = await this.generator.generateFile(reportType, {
             name: "Temp name",
@@ -36,15 +36,15 @@ export class ReportService {
             serialNumber: report.productSN,
         });
         console.log("Generated file name: ", reportName)
-        const attachments = {
-            urls: report.mediaUrls,
-            filenames: [reportName]
-        }
-        this.mailer.sendMail(this.config.getReportReceiverEmail(), report.email, attachments).then(()=>{
-            // fs.promises.unlink(path.resolve(reportName)); // Delete the file after sending it
-        });
-        console.log(path.resolve(reportName))
-        return reportFromDb;
+        //const attachments = {
+        //    urls: report.mediaUrls,
+        //    filenames: [reportName]
+        //}
+        //this.mailer.sendMail(this.config.getReportReceiverEmail(), report.email, attachments).then(()=>{
+        //    // fs.promises.unlink(path.resolve(reportName)); // Delete the file after sending it
+        //});
+        //console.log(path.resolve(reportName))
+        //return reportFromDb;
     }
 
     async getReportById(id: string): Promise<any> {
