@@ -58,6 +58,9 @@ export class ReportService {
 
     async getReportsForProduct(productName: string): Promise<any> {
         const reports = await this.repository.getReportsForProduct(productName);
+        if(reports.length === 0) {
+            return []
+        }
         const reasons = reports.map(report => report.description);
         const summary = await this.summarizer.summarize(reasons);
         return summary
