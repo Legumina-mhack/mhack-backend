@@ -32,6 +32,7 @@ export class ReportRepository {
             $search: {
               index: "productName",
               text: {
+                fuzzy: {},
                 query: productName,
                 path: {
                   wildcard: "*"
@@ -41,6 +42,7 @@ export class ReportRepository {
           }
       ]
       const data = await this.reportModel.aggregate<ReportDocument>(aggregation);
+      console.log(data)
       return data;
     }
 
