@@ -42,7 +42,6 @@ export class ReportRepository {
           }
       ]
       const data = await this.reportModel.aggregate<ReportDocument>(aggregation);
-      console.log(data)
       return data;
     }
 
