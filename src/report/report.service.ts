@@ -12,7 +12,7 @@ import * as cheerio from 'cheerio';
 @Injectable()
 export class ReportService {
     constructor(
-        private readonly repository: ReportRepository, 
+        private readonly repository: ReportRepository,
         private readonly summarizer: SummarizerService,
         private readonly mailer: MailerService,
         private readonly generator: GenerateService,
@@ -21,7 +21,7 @@ export class ReportService {
 
     async createReport(report: Partial<ReportDocument>): Promise<any> {
         const reportFromDb = await this.repository.create(report);
-        const reportType = report.accountNumber ? ReportFileType.LOWER_PRICE_OR_WITHDRAW : ReportFileType.RETURN_OR_EXCHANGE; 
+        const reportType = report.accountNumber ? ReportFileType.LOWER_PRICE_OR_WITHDRAW : ReportFileType.RETURN_OR_EXCHANGE;
         const reportName = await this.generator.generateFile(reportType, {
             name: "Temp name",
             sellerName: report.sellerName,
@@ -41,7 +41,7 @@ export class ReportService {
             filenames: [reportName]
         }
         this.mailer.sendMail(this.config.getReportReceiverEmail(), report.email, attachments).then(()=>{
-            fs.promises.unlink(path.resolve(reportName)); // Delete the file after sending it
+            // fs.promises.unlink(path.resolve(reportName)); // Delete the file after sending it
         });
         console.log(path.resolve(reportName))
         return reportFromDb;
@@ -61,7 +61,7 @@ export class ReportService {
         const reasons = reports.map(report => report.description);
         const summary = await this.summarizer.summarize(reasons);
         return summary
-    } 
+    }
 
     async searchOnUokik(url: string, type: string) {
         const baseUrl = 'http://publikacje.uokik.gov.pl/hermes3_pub/'
@@ -77,7 +77,7 @@ export class ReportService {
         const ean = $1("#wpis > tbody > tr:nth-child(10) > td")
         const decisionDescription = $1("#wpis > tbody > tr:nth-child(11) > td")
         const model = $1("#wpis > tbody > tr:nth-child(9) > td")
-        
+
         return {
             name: $(this).text().trim(),
             href: productUrl,
@@ -95,7 +95,7 @@ export class ReportService {
         const baseUrl = 'http://publikacje.uokik.gov.pl/hermes3_pub/'
         const searchUrlDangerous = `${baseUrl}Rejestr.ashx?Typ=ProduktNiebezpieczny&DataWpisuOd=&DataWpisuDo=&NumerIdentyfikacyjny=&NazwaProduktu=${productName}&KodWyrobu=&Sort=&x=0&y=0`
         const searchUrlNonCompliant = `${baseUrl}Rejestr.ashx?Typ=WyrobNiezgodnyZZasadniczymiWymaganiami&DataWpisuOd=&DataWpisuDo=&NumerIdentyfikacyjny=&NazwaProduktu=${productName}&KodWyrobu=&Sort=&x=0&y=0`
-        
+
         const result = await Promise.all([this.searchOnUokik(searchUrlDangerous, "dangerous"), this.searchOnUokik(searchUrlNonCompliant, "non-compliant")])
         return result.flat()
     }

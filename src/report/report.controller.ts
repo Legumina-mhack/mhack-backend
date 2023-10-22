@@ -10,9 +10,9 @@ export class ReportController {
     @Post('create')
     @HttpCode(201)
     async createReport(@Body() report: ReportCreateDto) {
-        if (!report.returnOrExchange && !report.accountNumber) {
-            throw new BadRequestException('If you want to use return or exchange provide returnOrExchange field. If you want to use lower price or withdraw provide accountNumber field.')
-        }
+        // if (!report.returnOrExchange && !report.accountNumber) {
+        //     throw new BadRequestException('If you want to use return or exchange provide returnOrExchange field. If you want to use lower price or withdraw provide accountNumber field.')
+        // }
         return this.service.createReport(report);
     }
 
@@ -28,16 +28,16 @@ export class ReportController {
     async findReportsByProducts(@Param() {productName}: any) {
         return this.service.checkProductsList(productName);
     }
-    
+
     @Get('list/:id')
     @HttpCode(200)
     async findReportById(@Param() {id}: any) {
         return this.service.getReportById(id);
     }
-    
+
     @Get('list/user/:userId')
     @HttpCode(200)
-    async findReportsByUser(@Param() {userId}: any) { 
+    async findReportsByUser(@Param() {userId}: any) {
         return this.service.getReportsForUser(userId);
     }
 }

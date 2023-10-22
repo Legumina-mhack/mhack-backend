@@ -46,9 +46,8 @@ export class GenerateService {
         });
 
         const uniqueName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + ".docx";
-        Packer.toBuffer(doc).then((buffer) => {
-            fs.writeFileSync(uniqueName, buffer);
-        });
+        const buffer = await Packer.toBuffer(doc);
+        await fs.writeFileSync(uniqueName, buffer);
 
         return uniqueName
     }
